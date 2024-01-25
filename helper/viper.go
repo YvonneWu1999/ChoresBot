@@ -1,6 +1,8 @@
 package helper
 
 import (
+	"fmt"
+
 	"github.com/spf13/viper"
 )
 
@@ -9,8 +11,6 @@ func NewViper() {
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
-		// if viper.GetString("ENV") != "PROD" {
-		// 	panic(fmt.Errorf("fatal error config file: %w", err))
-		// }
+		panic(fmt.Errorf("fatal error config file: %w", err))
 	}
 }
