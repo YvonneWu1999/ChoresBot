@@ -23,12 +23,14 @@ func NewHttpHandler(bot *linebot.Client) func(w http.ResponseWriter, req *http.R
 		}
 		// random reply message to keyword "打掃完畢😎"
 		for _, event := range events {
+			if event.Type == linebot.EventTypeJoin {
+				LogInfo(fmt.Sprintf("bot joined this group! groupID:%s", event.Source.GroupID))
+			}
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
 					replyChores := [5]string{"好棒棒 🍭", "讚讚 👍", "good job 🙌", "yes queen 🫶", "nice 🤙"}
 					if message.Text == "打掃完畢😎" {
-						LogInfo(fmt.Sprintf("groupID:%s", event.Source.GroupID))
 						profile, err := bot.GetProfile(event.Source.UserID).Do()
 						if err != nil {
 							LogError("Get Profile Error", err)

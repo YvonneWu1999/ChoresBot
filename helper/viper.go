@@ -11,6 +11,8 @@ func NewViper() {
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
-		panic(fmt.Errorf("fatal error config file: %w", err))
+		if viper.GetString("ENV") != "PROD" {
+			panic(fmt.Errorf("fatal error config file: %w", err))
+		}
 	}
 }
