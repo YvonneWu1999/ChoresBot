@@ -21,8 +21,8 @@ func main() {
 	// Assign chores based on current week
 	var currentTime time.Time = time.Now()
 	var year, weekNum = currentTime.ISOWeek()
-	assignments := AssignChores(weekNum, year, []string{"Aria", "Sarah", "Yvonne"}, []string{"倒垃圾♻️", "吸地🧹", "澆水🪴"})
-
+	assignments := AssignChores(weekNum, year, []string{"Aria", "Sarah", "Yvonne"}, []string{"倒垃圾♻️", "吸地🧹", "澆水🪴", "買東西", "做菜", "掃廁所", "拖地"})
+	// assignments := AssignChores(weekNum, year, []string{"Aria", "Sarah", "Yvonne"}, []string{"倒垃圾♻️", "吸地🧹"})
 	// Send chores notification to group
 	var messages []linebot.SendingMessage
 	contents := NewChoreMessage(weekNum, []string{"Aria", "Sarah", "Yvonne"}, assignments)
